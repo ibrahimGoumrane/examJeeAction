@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Don</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0fff0; /* Light greenish background */
+            color: #006400; /* Dark green text */
+            padding: 20px;
+        }
+        a {
+            padding: 6px 12px;
+            background-color: #006400;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            display: inline-block;
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease;
+        }
+        a:hover {
+            background-color: #004400;
+        }
+        h1 {
+            color: #006400;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* Form Styling */
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+            margin: auto;
+            background-color: #e8fff0; /* Soft green background for form */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 100, 0, 0.1); /* Subtle shadow */
+            border: 1px solid #006400;
+        }
+        label {
+            font-weight: bold;
+            margin: 10px 0 5px;
+            color: #004400;
+        }
+        select, input, button {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #228B22;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        select, input {
+            width: 100%;
+            color: #004000;
+        }
+        input{
+            max-width: 378px;
+        }
+        input:focus, select:focus {
+            border-color: #006400;
+            outline: none;
+            box-shadow: 0 0 5px #97cba9;
+        }
+
+        /* Button */
+        button {
+            background-color: #006400;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #228B22; /* Lighter green for hover */
+        }
+        button:active {
+            background-color: #004400;
+        }
+    </style>
+</head>
+<body>
+<!-- Back to Home Link -->
+<a th:href="@{/index}">Back to Home</a>
+
+<!-- Form Heading -->
+<h1>Add a New Don</h1>
+
+<!-- Add Don Form -->
+<form th:action="@{/addDon}" method="post">
+    <label for="type">Type</label>
+    <select id="type" name="type">
+        <option th:each="t : ${type}" th:value="${t}" th:text="${t}">
+            Type
+        </option>
+    </select>
+
+    <label for="montant">Amount</label>
+    <input type="text" id="montant" name="montant"
+           th:value="${donDto.montant}" placeholder="Enter the amount" required>
+
+    <label for="actionId">Action</label>
+    <select id="actionId" name="actionId">
+        <option value="" disabled selected>Select an Action</option>
+        <option th:each="a : ${actions}"
+                th:value="${a.id}"
+                th:selected="${action != null and a.id == action.id}"
+                th:text="${a.titre}">
+            Action
+        </option>
+    </select>
+
+    <button type="submit">Save</button>
+</form>
+</body>
+</html>

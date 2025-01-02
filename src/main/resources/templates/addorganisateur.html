@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Organisateur</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0fff0;
+            color: #006400;
+            padding: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+            margin: auto;
+        }
+        label {
+            margin: 10px 0 5px;
+        }
+        input, textarea, button {
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #006400;
+            border-radius: 3px;
+        }
+        button {
+            background-color: #006400;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #228B22;
+        }
+        a {
+            padding: 6px 12px;
+            background-color: #006400;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+        a:hover {
+            background-color: #004400;
+        }
+    </style>
+</head>
+<body>
+<a th:href="@{/index}">Back to Home</a>
+
+<h1>Add a New Organisateur</h1>
+<form th:action="@{/addOrganisateur}" method="post">
+    <label for="nom">Name</label>
+    <input type="text" id="nom" name="nom" th:value="${organisateurDto.nom}" required>
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" th:text="${organisateurDto.email}" required/>
+    <button type="submit">Save</button>
+</form>
+</body>
+</html>

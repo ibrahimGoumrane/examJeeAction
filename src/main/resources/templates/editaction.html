@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Action</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0fff0;
+      color: #006400;
+      padding: 20px;
+      margin: 0;
+    }
+    form {
+      width: 50%;
+      margin: auto;
+      padding: 20px;
+      background-color: #e0ffe0;
+      border: 1px solid #006400;
+      border-radius: 8px;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #006400;
+      border-radius: 5px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #006400;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #004400;
+    }
+  </style>
+</head>
+<body>
+<h1>Edit Action</h1>
+<form th:object="${actionDto}" th:action="@{/updateAction}" method="post">
+  <input type="hidden" th:field="*{id}" />
+  <div>
+    <label for="titre">titre:</label>
+    <input type="text" th:field="*{titre}" id="titre"/>
+  </div>
+  <div>
+    <label for="description">Description:</label>
+    <input type="text" th:field="*{description}" th:value="*{description}" id="description" />
+  </div>
+  <div>
+    <label for="montantObjectif">Montant Obj</label>
+    <input type="number" id="montantObjectif" th:field="*{montantObjectif}"  th:value="${actionDto.montantObjectif}" >
+  </div>
+  <div>
+    <label for="etat">Etat:</label>
+    <select th:field="*{etat}" id="etat" >
+      <option th:each="etat : ${etats}" th:value="${etat}" th:text="${etat}"></option>
+    </select>
+  </div>
+  <div>
+    <label for="organisateur">Organisateur:</label>
+    <select th:field="*{organisateur.id}" id="organisateur">
+      <option th:each="organisateur : ${organisateurs}" th:value="${organisateur.id}" th:text="${organisateur.nom}"></option>
+    </select>
+  </div>
+  <button type="submit">Update</button>
+</form>
+</body>
+</html>

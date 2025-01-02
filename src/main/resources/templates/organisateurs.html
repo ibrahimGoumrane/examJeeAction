@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Organisateurs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0fff0;
+            color: #006400;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #006400;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #006400;
+            color: white;
+        }
+        tbody tr:nth-child(odd) {
+            background-color: #f5fff5;
+        }
+        tbody tr:hover {
+            background-color: #e0ffe0;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+        a.button {
+            padding: 6px 12px;
+            background-color: #006400;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+        a.button:hover {
+            background-color: #004400;
+        }
+    </style>
+</head>
+<body>
+<a th:href="@{/index}" class="button">Back to Home</a>
+
+<h1>Organisateurs List</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="organisateur : ${organisateurs}">
+        <td th:text="${organisateur.id}">1</td>
+        <td th:text="${organisateur.nom}">John Doe</td>
+        <td th:text="${organisateur.email}">john.doe@example.com</td>
+        <td class="action-buttons">
+            <a th:href="@{/editOrganisateur(id=${organisateur.id})}" class="button">Edit</a>
+            <a th:href="@{/deleteOrganisateur(id=${organisateur.id})}" class="button">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

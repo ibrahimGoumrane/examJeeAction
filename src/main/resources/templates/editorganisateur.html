@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Organisateur</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0fff0;
+      color: #006400;
+      padding: 20px;
+      margin: 0;
+    }
+    form {
+      width: 50%;
+      margin: auto;
+      padding: 20px;
+      background-color: #e0ffe0;
+      border: 1px solid #006400;
+      border-radius: 8px;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #006400;
+      border-radius: 5px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #006400;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #004400;
+    }
+  </style>
+</head>
+<body>
+<h1>Edit Organisateur</h1>
+<form th:object="${organisateurDto}" th:action="@{/updateOrganisateur}" method="post">
+  <input type="hidden" th:field="*{id}" />
+  <div>
+    <label for="nom">Name:</label>
+    <input type="text" th:field="*{nom}" id="nom" />
+  </div>
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" th:field="*{email}" id="email" />
+  </div>
+  <button type="submit">Update</button>
+</form>
+</body>
+</html>

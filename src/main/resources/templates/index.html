@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0fff0;
+            color: #006400;
+            text-align: center;
+            padding: 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin: 10px 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            background-color: #006400;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul li a:hover {
+            background-color: #228B22;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+<h1>Welcome to the Action Management System</h1>
+<nav>
+    <ul>
+        <li><a th:href="@{/organisateurs}">Organisateurs</a></li>
+        <li><a th:href="@{/actions}">Actions</a></li>
+        <li><a th:href="@{/addOrganisateur}">Add Organisateur</a></li>
+        <li><a th:href="@{/addaction}">Add Action</a></li>
+        <li><a th:href="@{/addDon}">Add Don</a></li>
+    </ul>
+</nav>
+</body>
+</html>

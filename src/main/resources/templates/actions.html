@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Actions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0fff0;
+            color: #006400;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #006400;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #006400;
+            color: white;
+        }
+        tbody tr:nth-child(odd) {
+            background-color: #f5fff5;
+        }
+        tbody tr:hover {
+            background-color: #e0ffe0;
+        }
+        .below-target {
+            background: red;
+            color: wheat;
+        }
+        .met-target {
+            background: green;
+            color: wheat;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+        a.button {
+            padding: 6px 12px;
+            background-color: #006400;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+        a.button:hover {
+            background-color: #004400;
+        }
+    </style>
+</head>
+<body>
+<a th:href="@{/index}" class="button">Back to Home</a>
+
+<h1>Actions List</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Organisateur</th>
+        <th>Montant Objectif</th>
+        <th>Total Actuel (Dons)</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="action : ${actions}">
+        <td th:text="${action.id}">1</td>
+        <td th:text="${action.titre}">Title</td>
+        <td th:text="${action.description}">Description</td>
+        <td th:text="${action.etat}">Status</td>
+        <td th:text="${action.organisateur.nom}">John Doe</td>
+        <td th:text="${action.montantObjectif}"></td>
+        <td th:text="${action.currentMontant}"
+            th:classappend="${action.currentMontant < action.montantObjectif} ? 'below-target' : 'met-target'">
+        </td>
+
+        <td class="action-buttons">
+            <a th:href="@{/addDon(actionId=${action.id})}" class="button">Add Don</a>
+            <a th:href="@{/editAction(id=${action.id})}" class="button">Edit</a>
+            <a th:href="@{/deleteAction(id=${action.id})}" class="button">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
