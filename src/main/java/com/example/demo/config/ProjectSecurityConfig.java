@@ -13,7 +13,7 @@ public class ProjectSecurityConfig {
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(requests -> requests
                         .requestMatchers("/addOrganisateur","/addDon","/addaction").authenticated().
-                        requestMatchers("/index","/organisateurs","/actions").permitAll())
+                        requestMatchers("/","/organisateurs","/actions").permitAll().anyRequest().permitAll())
                 .formLogin(formlogin->{
                     formlogin.defaultSuccessUrl("/index",true);
                 })

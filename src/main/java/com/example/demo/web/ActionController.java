@@ -30,7 +30,7 @@ public class ActionController {
     private final DonService donService;
     private final OrganisateurService organisateurService;
     private static final Logger logger = LoggerFactory.getLogger(ActionController.class);
-    @GetMapping("/index")
+    @GetMapping("/")
     public String index(){
         return "index";
     }
